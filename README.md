@@ -1,2 +1,137 @@
 # TRACK
-TRACK (Tracking Records And Criminal Knowledge) - A dual-database crime management system with Oracle XE and MongoDB support. Features role-based access control, case tracking, FIR management, criminal records, evidence handling, and custom query editor for law enforcement agencies.
+
+Tracking Records And Criminal Knowledge (TRACK) is a database driven crime management system for managing criminal records, FIRs, investigations, evidence, victims, and officers. The project supports both Oracle XE (SQL) and MongoDB (NoSQL) through a unified web interface.
+
+## Features
+
+- Role based access control
+- Criminal record management
+- FIR and case tracking
+- Evidence management
+- Victim registry
+- Officer management
+- Custom SQL and MongoDB query execution
+- Oracle XE and MongoDB support
+
+## Tech Stack
+
+- Node.js
+- Express.js
+- Oracle XE 21c
+- MongoDB
+- HTML, CSS, JavaScript
+- Docker (optional)
+
+## Requirements
+
+Before running the project, ensure the following are installed:
+
+- Node.js 20+
+- Oracle XE 21c
+- Oracle Instant Client
+- MongoDB 7+ (or Docker)
+- npm
+
+### Node Dependencies
+
+```bash
+npm install express mongodb oracledb cors
+```
+
+## Project Structure
+
+```text
+TRACK/
+├── webapp/
+├── sql/
+├── mongo/
+├── setup/
+├── Documentation.pdf
+├── start.sh
+└── README.md
+```
+
+## Setup
+
+### Clone Repository
+
+```bash
+git clone https://github.com/TheHassanBukhari/TRACK.git
+cd TRACK
+```
+
+### Install Dependencies
+
+```bash
+cd webapp
+npm install
+```
+
+### Oracle Setup
+
+Run the scripts in order:
+
+```text
+sql/create.txt
+sql/tables.txt
+sql/data.txt
+```
+
+### MongoDB Setup
+
+Create the database and run:
+
+```text
+mongo/mongo_create_tables.txt
+```
+
+### Run Application
+
+```bash
+cd webapp
+node server.js
+```
+
+Open:
+
+```text
+http://localhost:3000/login.html
+```
+
+## Default Login
+
+| Role | ID |
+|------|----|
+| Admin | 1 |
+| Admin | 4 |
+| Regular Officer | 2 |
+| Regular Officer | 3 |
+| Regular Officer | 5 |
+
+## API Examples
+
+```http
+POST /api/login
+GET  /api/oracle/stats
+GET  /api/mongo/stats
+GET  /api/:db/cases/all
+POST /api/:db/cases/create
+```
+
+## Future Improvements
+
+- Mobile application
+- Audit logging
+- PDF report generation
+- Real time notifications
+- Advanced search
+
+## Academic Information
+
+**Course:** Database Systems  
+**Institution:** COMSATS University Islamabad  
+**Project Type:** Semester Project
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
