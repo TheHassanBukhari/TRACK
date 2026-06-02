@@ -1,0 +1,18 @@
+use track
+
+show collections
+
+db.officer.countDocuments();
+db.crime.countDocuments();
+db.victims.countDocuments();
+db.criminal.countDocuments();
+db.fir.countDocuments();
+db.cases.countDocuments();
+db.evidence.countDocuments();
+db.officer_phone.countDocuments();
+db.victim_contact.countDocuments();
+db.criminal_record.countDocuments();
+db.investigates.countDocuments();
+db.belongs_to.countDocuments();
+db.involves.countDocuments();
+db.commits.countDocuments();

@@ -1,0 +1,231 @@
+-- =========================================
+-- SAMPLE DATA INSERTION QUERIES
+-- =========================================
+
+-- =========================================
+-- OFFICE
+-- =========================================
+
+INSERT INTO OFFICE (ROOM_NO) VALUES ('A-101');
+INSERT INTO OFFICE (ROOM_NO) VALUES ('A-102');
+INSERT INTO OFFICE (ROOM_NO) VALUES ('B-201');
+INSERT INTO OFFICE (ROOM_NO) VALUES ('B-202');
+INSERT INTO OFFICE (ROOM_NO) VALUES ('C-301');
+
+-- =========================================
+-- OFFICER
+-- =========================================
+
+INSERT INTO OFFICER (FIRST_NAME, LAST_NAME, HIRE_DATE, ROLE, RANK, GENDER)
+VALUES ('Ali', 'Khan', DATE '2020-01-10', 'Admin', 'Inspector', 'Male');
+
+INSERT INTO OFFICER (FIRST_NAME, LAST_NAME, HIRE_DATE, ROLE, RANK, GENDER)
+VALUES ('Sara', 'Ahmed', DATE '2021-03-15', 'Regular', 'Sub Inspector', 'Female');
+
+INSERT INTO OFFICER (FIRST_NAME, LAST_NAME, HIRE_DATE, ROLE, RANK, GENDER)
+VALUES ('Usman', 'Iqbal', DATE '2019-06-20', 'Regular', 'DSP', 'Male');
+
+INSERT INTO OFFICER (FIRST_NAME, LAST_NAME, HIRE_DATE, ROLE, RANK, GENDER)
+VALUES ('Hina', 'Malik', DATE '2022-02-01', 'Admin', 'Inspector', 'Female');
+
+INSERT INTO OFFICER (FIRST_NAME, LAST_NAME, HIRE_DATE, ROLE, RANK, GENDER)
+VALUES ('Bilal', 'Shah', DATE '2018-09-12', 'Regular', 'Constable', 'Male');
+
+-- =========================================
+-- OFFICER_PHONE
+-- =========================================
+
+INSERT INTO OFFICER_PHONE VALUES (1, '03001234567');
+INSERT INTO OFFICER_PHONE VALUES (2, '03111234567');
+INSERT INTO OFFICER_PHONE VALUES (3, '03221234567');
+INSERT INTO OFFICER_PHONE VALUES (4, '03331234567');
+INSERT INTO OFFICER_PHONE VALUES (5, '03441234567');
+
+-- =========================================
+-- ADMIN_OFFICER
+-- =========================================
+
+INSERT INTO ADMIN_OFFICER VALUES (1, 'High', 'Investigation');
+INSERT INTO ADMIN_OFFICER VALUES (4, 'Medium', 'Operations');
+
+-- =========================================
+-- REGULAR_OFFICER
+-- =========================================
+
+INSERT INTO REGULAR_OFFICER VALUES (2, 'Morning', 'Mardan City');
+INSERT INTO REGULAR_OFFICER VALUES (3, 'Night', 'Peshawar Road');
+INSERT INTO REGULAR_OFFICER VALUES (5, 'Evening', 'Katlang');
+
+-- =========================================
+-- UPDATE OFFICE ADMIN LINKS
+-- =========================================
+
+UPDATE OFFICE SET OFFICER_ID = 1 WHERE OFFICE_ID = 1;
+UPDATE OFFICE SET OFFICER_ID = 4 WHERE OFFICE_ID = 2;
+
+-- =========================================
+-- FIR
+-- =========================================
+
+INSERT INTO FIR (FIR_NO, FIR_DATE, DESCR, OFFICER_ID)
+VALUES ('FIR-001', DATE '2024-01-10', 'Mobile snatching case', 2);
+
+INSERT INTO FIR (FIR_NO, FIR_DATE, DESCR, OFFICER_ID)
+VALUES ('FIR-002', DATE '2024-01-15', 'Cyber fraud case', 3);
+
+INSERT INTO FIR (FIR_NO, FIR_DATE, DESCR, OFFICER_ID)
+VALUES ('FIR-003', DATE '2024-02-01', 'Burglary case', 5);
+
+INSERT INTO FIR (FIR_NO, FIR_DATE, DESCR, OFFICER_ID)
+VALUES ('FIR-004', DATE '2024-02-11', 'Vehicle theft case', 2);
+
+INSERT INTO FIR (FIR_NO, FIR_DATE, DESCR, OFFICER_ID)
+VALUES ('FIR-005', DATE '2024-02-20', 'Assault case', 3);
+
+-- =========================================
+-- CASES
+-- =========================================
+
+INSERT INTO CASES (C_TITLE, OPEN_DATE, CLOSE_DATE, C_STATUS, FIR_ID)
+VALUES ('Snatching Investigation', DATE '2024-01-10', NULL, 'Under Investigation', 1);
+
+INSERT INTO CASES (C_TITLE, OPEN_DATE, CLOSE_DATE, C_STATUS, FIR_ID)
+VALUES ('Cyber Fraud Tracking', DATE '2024-01-15', NULL, 'Open', 2);
+
+INSERT INTO CASES (C_TITLE, OPEN_DATE, CLOSE_DATE, C_STATUS, FIR_ID)
+VALUES ('Burglary Investigation', DATE '2024-02-01', DATE '2024-02-20', 'Closed', 3);
+
+INSERT INTO CASES (C_TITLE, OPEN_DATE, CLOSE_DATE, C_STATUS, FIR_ID)
+VALUES ('Vehicle Theft Recovery', DATE '2024-02-11', NULL, 'Under Investigation', 4);
+
+INSERT INTO CASES (C_TITLE, OPEN_DATE, CLOSE_DATE, C_STATUS, FIR_ID)
+VALUES ('Assault Investigation', DATE '2024-02-20', NULL, 'Open', 5);
+
+-- =========================================
+-- EVIDENCE
+-- =========================================
+
+INSERT INTO EVIDENCE VALUES (1, 1, 'CCTV Footage', DATE '2024-01-11', 'Digital');
+INSERT INTO EVIDENCE VALUES (1, 2, 'Witness Statement', DATE '2024-01-12', 'Document');
+INSERT INTO EVIDENCE VALUES (2, 1, 'Bank Transaction Logs', DATE '2024-01-16', 'Digital');
+INSERT INTO EVIDENCE VALUES (3, 1, 'Fingerprints', DATE '2024-02-02', 'Physical');
+INSERT INTO EVIDENCE VALUES (4, 1, 'Vehicle Parts', DATE '2024-02-13', 'Physical');
+
+-- =========================================
+-- CRIME
+-- =========================================
+
+INSERT INTO CRIME (CRIME_TYPE, C_DATE, C_LOCATION, C_DESCR)
+VALUES ('Snatching', DATE '2024-01-09', 'Mardan', 'Mobile phone snatching');
+
+INSERT INTO CRIME (CRIME_TYPE, C_DATE, C_LOCATION, C_DESCR)
+VALUES ('Cyber Fraud', DATE '2024-01-14', 'Peshawar', 'Online scam');
+
+INSERT INTO CRIME (CRIME_TYPE, C_DATE, C_LOCATION, C_DESCR)
+VALUES ('Burglary', DATE '2024-01-30', 'Katlang', 'House burglary');
+
+INSERT INTO CRIME (CRIME_TYPE, C_DATE, C_LOCATION, C_DESCR)
+VALUES ('Vehicle Theft', DATE '2024-02-10', 'Islamabad', 'Bike theft');
+
+INSERT INTO CRIME (CRIME_TYPE, C_DATE, C_LOCATION, C_DESCR)
+VALUES ('Assault', DATE '2024-02-18', 'Swat', 'Street fight assault');
+
+-- =========================================
+-- VICTIMS
+-- =========================================
+
+INSERT INTO VICTIMS (FIRST_NAME, LAST_NAME, GENDER)
+VALUES ('Ahmed', 'Raza', 'Male');
+
+INSERT INTO VICTIMS (FIRST_NAME, LAST_NAME, GENDER)
+VALUES ('Ayesha', 'Noor', 'Female');
+
+INSERT INTO VICTIMS (FIRST_NAME, LAST_NAME, GENDER)
+VALUES ('Kamran', 'Ali', 'Male');
+
+INSERT INTO VICTIMS (FIRST_NAME, LAST_NAME, GENDER)
+VALUES ('Fatima', 'Zahid', 'Female');
+
+INSERT INTO VICTIMS (FIRST_NAME, LAST_NAME, GENDER)
+VALUES ('Hamza', 'Khalid', 'Male');
+
+-- =========================================
+-- VICTIM_CONTACT
+-- =========================================
+
+INSERT INTO VICTIM_CONTACT VALUES (1, '03005551234');
+INSERT INTO VICTIM_CONTACT VALUES (2, '03115551234');
+INSERT INTO VICTIM_CONTACT VALUES (3, '03225551234');
+INSERT INTO VICTIM_CONTACT VALUES (4, '03335551234');
+INSERT INTO VICTIM_CONTACT VALUES (5, '03445551234');
+
+-- =========================================
+-- CRIMINAL
+-- =========================================
+
+INSERT INTO CRIMINAL (FIRST_NAME, LAST_NAME, STREET, DISTRICT, CITY, STATUS, DOB, GENDER)
+VALUES ('Imran', 'Khan', 'Street 1', 'Mardan', 'Mardan', 'Arrested', DATE '1995-05-12', 'Male');
+
+INSERT INTO CRIMINAL (FIRST_NAME, LAST_NAME, STREET, DISTRICT, CITY, STATUS, DOB, GENDER)
+VALUES ('Naveed', 'Ali', 'Street 2', 'Peshawar', 'Peshawar', 'Wanted', DATE '1992-08-21', 'Male');
+
+INSERT INTO CRIMINAL (FIRST_NAME, LAST_NAME, STREET, DISTRICT, CITY, STATUS, DOB, GENDER)
+VALUES ('Sajid', 'Iqbal', 'Street 3', 'Swat', 'Swat', 'Released', DATE '1990-03-10', 'Male');
+
+INSERT INTO CRIMINAL (FIRST_NAME, LAST_NAME, STREET, DISTRICT, CITY, STATUS, DOB, GENDER)
+VALUES ('Zeeshan', 'Ahmad', 'Street 4', 'Charsadda', 'Charsadda', 'Arrested', DATE '1998-11-05', 'Male');
+
+INSERT INTO CRIMINAL (FIRST_NAME, LAST_NAME, STREET, DISTRICT, CITY, STATUS, DOB, GENDER)
+VALUES ('Aslam', 'Shah', 'Street 5', 'Nowshera', 'Nowshera', 'Wanted', DATE '1994-01-17', 'Male');
+
+-- =========================================
+-- CRIMINAL_RECORD
+-- =========================================
+
+INSERT INTO CRIMINAL_RECORD VALUES (1, 1001, '2 years imprisonment', 3);
+INSERT INTO CRIMINAL_RECORD VALUES (2, 1002, 'Cybercrime charges', 2);
+INSERT INTO CRIMINAL_RECORD VALUES (3, 1003, 'Released after investigation', 1);
+INSERT INTO CRIMINAL_RECORD VALUES (4, 1004, 'Vehicle theft charges', 4);
+INSERT INTO CRIMINAL_RECORD VALUES (5, 1005, 'Assault history', 5);
+
+-- =========================================
+-- INVESTIGATES
+-- =========================================
+
+INSERT INTO INVESTIGATES VALUES (2, 1);
+INSERT INTO INVESTIGATES VALUES (3, 2);
+INSERT INTO INVESTIGATES VALUES (5, 3);
+INSERT INTO INVESTIGATES VALUES (2, 4);
+INSERT INTO INVESTIGATES VALUES (3, 5);
+
+-- =========================================
+-- BELONGS_TO
+-- =========================================
+
+INSERT INTO BELONGS_TO VALUES (1, 1);
+INSERT INTO BELONGS_TO VALUES (2, 2);
+INSERT INTO BELONGS_TO VALUES (3, 3);
+INSERT INTO BELONGS_TO VALUES (4, 4);
+INSERT INTO BELONGS_TO VALUES (5, 5);
+
+-- =========================================
+-- INVOLVES
+-- =========================================
+
+INSERT INTO INVOLVES VALUES (1, 1);
+INSERT INTO INVOLVES VALUES (2, 2);
+INSERT INTO INVOLVES VALUES (3, 3);
+INSERT INTO INVOLVES VALUES (4, 4);
+INSERT INTO INVOLVES VALUES (5, 5);
+
+-- =========================================
+-- COMMITS
+-- =========================================
+
+INSERT INTO COMMITS VALUES (1, 1);
+INSERT INTO COMMITS VALUES (2, 2);
+INSERT INTO COMMITS VALUES (3, 3);
+INSERT INTO COMMITS VALUES (4, 4);
+INSERT INTO COMMITS VALUES (5, 5);
+
+COMMIT;

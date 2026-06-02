@@ -1,0 +1,127 @@
+use track
+
+// OFFICER
+db.officer.insertMany([
+  { officer_id: 1, first_name: "Ali", last_name: "Khan", hire_date: new Date("2020-01-10"), role: "Admin", rank: "Inspector", gender: "Male" },
+  { officer_id: 2, first_name: "Sara", last_name: "Ahmed", hire_date: new Date("2021-03-15"), role: "Regular", rank: "Sub Inspector", gender: "Female" },
+  { officer_id: 3, first_name: "Usman", last_name: "Iqbal", hire_date: new Date("2019-06-20"), role: "Regular", rank: "DSP", gender: "Male" },
+  { officer_id: 4, first_name: "Hina", last_name: "Malik", hire_date: new Date("2022-02-01"), role: "Admin", rank: "Inspector", gender: "Female" },
+  { officer_id: 5, first_name: "Bilal", last_name: "Shah", hire_date: new Date("2018-09-12"), role: "Regular", rank: "Constable", gender: "Male" }
+]);
+
+// CRIME
+db.crime.insertMany([
+  { crime_id: 1, crime_type: "Snatching", c_date: new Date("2024-01-09"), c_location: "Mardan", c_desc: "Mobile phone snatching" },
+  { crime_id: 2, crime_type: "Cyber Fraud", c_date: new Date("2024-01-14"), c_location: "Peshawar", c_desc: "Online scam" },
+  { crime_id: 3, crime_type: "Burglary", c_date: new Date("2024-01-30"), c_location: "Katlang", c_desc: "House burglary" },
+  { crime_id: 4, crime_type: "Vehicle Theft", c_date: new Date("2024-02-10"), c_location: "Islamabad", c_desc: "Bike theft" },
+  { crime_id: 5, crime_type: "Assault", c_date: new Date("2024-02-18"), c_location: "Swat", c_desc: "Street fight assault" }
+]);
+
+// VICTIMS
+db.victims.insertMany([
+  { victim_id: 1, first_name: "Ahmed", last_name: "Raza", gender: "Male" },
+  { victim_id: 2, first_name: "Ayesha", last_name: "Noor", gender: "Female" },
+  { victim_id: 3, first_name: "Kamran", last_name: "Ali", gender: "Male" },
+  { victim_id: 4, first_name: "Fatima", last_name: "Zahid", gender: "Female" },
+  { victim_id: 5, first_name: "Hamza", last_name: "Khalid", gender: "Male" }
+]);
+
+// CRIMINAL
+db.criminal.insertMany([
+  { cr_id: 1, first_name: "Imran", last_name: "Khan", street: "Street 1", district: "Mardan", city: "Mardan", status: "Arrested", dob: new Date("1995-05-12"), gender: "Male" },
+  { cr_id: 2, first_name: "Naveed", last_name: "Ali", street: "Street 2", district: "Peshawar", city: "Peshawar", status: "Wanted", dob: new Date("1992-08-21"), gender: "Male" },
+  { cr_id: 3, first_name: "Sajid", last_name: "Iqbal", street: "Street 3", district: "Swat", city: "Swat", status: "Released", dob: new Date("1990-03-10"), gender: "Male" },
+  { cr_id: 4, first_name: "Zeeshan", last_name: "Ahmad", street: "Street 4", district: "Charsadda", city: "Charsadda", status: "Arrested", dob: new Date("1998-11-05"), gender: "Male" },
+  { cr_id: 5, first_name: "Aslam", last_name: "Shah", street: "Street 5", district: "Nowshera", city: "Nowshera", status: "Wanted", dob: new Date("1994-01-17"), gender: "Male" }
+]);
+
+// FIR
+db.fir.insertMany([
+  { fir_id: 1, fir_no: "FIR-001", fir_date: new Date("2024-01-10"), descr: "Mobile snatching case", officer_id: 2 },
+  { fir_id: 2, fir_no: "FIR-002", fir_date: new Date("2024-01-15"), descr: "Cyber fraud case", officer_id: 3 },
+  { fir_id: 3, fir_no: "FIR-003", fir_date: new Date("2024-02-01"), descr: "Burglary case", officer_id: 5 },
+  { fir_id: 4, fir_no: "FIR-004", fir_date: new Date("2024-02-11"), descr: "Vehicle theft case", officer_id: 2 },
+  { fir_id: 5, fir_no: "FIR-005", fir_date: new Date("2024-02-20"), descr: "Assault case", officer_id: 3 }
+]);
+
+// CASES
+db.cases.insertMany([
+  { case_id: 1, c_title: "Snatching Investigation", open_date: new Date("2024-01-10"), close_date: null, c_status: "Under Investigation", fir_id: 1 },
+  { case_id: 2, c_title: "Cyber Fraud Tracking", open_date: new Date("2024-01-15"), close_date: null, c_status: "Open", fir_id: 2 },
+  { case_id: 3, c_title: "Burglary Investigation", open_date: new Date("2024-02-01"), close_date: new Date("2024-02-20"), c_status: "Closed", fir_id: 3 },
+  { case_id: 4, c_title: "Vehicle Theft Recovery", open_date: new Date("2024-02-11"), close_date: null, c_status: "Under Investigation", fir_id: 4 },
+  { case_id: 5, c_title: "Assault Investigation", open_date: new Date("2024-02-20"), close_date: null, c_status: "Open", fir_id: 5 }
+]);
+
+// EVIDENCE
+db.evidence.insertMany([
+  { case_id: 1, evid_id: 1, e_desc: "CCTV Footage", collected_date: new Date("2024-01-11"), evid_type: "Digital" },
+  { case_id: 1, evid_id: 2, e_desc: "Witness Statement", collected_date: new Date("2024-01-12"), evid_type: "Document" },
+  { case_id: 2, evid_id: 1, e_desc: "Bank Transaction Logs", collected_date: new Date("2024-01-16"), evid_type: "Digital" },
+  { case_id: 3, evid_id: 1, e_desc: "Fingerprints", collected_date: new Date("2024-02-02"), evid_type: "Physical" },
+  { case_id: 4, evid_id: 1, e_desc: "Vehicle Parts", collected_date: new Date("2024-02-13"), evid_type: "Physical" }
+]);
+
+// OFFICER_PHONE
+db.officer_phone.insertMany([
+  { officer_id: 1, phone_no: "03001234567" },
+  { officer_id: 2, phone_no: "03111234567" },
+  { officer_id: 3, phone_no: "03221234567" },
+  { officer_id: 4, phone_no: "03331234567" },
+  { officer_id: 5, phone_no: "03441234567" }
+]);
+
+// VICTIM_CONTACT
+db.victim_contact.insertMany([
+  { victim_id: 1, contact_no: "03005551234" },
+  { victim_id: 2, contact_no: "03115551234" },
+  { victim_id: 3, contact_no: "03225551234" },
+  { victim_id: 4, contact_no: "03335551234" },
+  { victim_id: 5, contact_no: "03445551234" }
+]);
+
+// CRIMINAL_RECORD
+db.criminal_record.insertMany([
+  { cr_id: 1, record_id: 1001, jail_history: "2 years imprisonment", prev_cases: 3 },
+  { cr_id: 2, record_id: 1002, jail_history: "Cybercrime charges", prev_cases: 2 },
+  { cr_id: 3, record_id: 1003, jail_history: "Released after investigation", prev_cases: 1 },
+  { cr_id: 4, record_id: 1004, jail_history: "Vehicle theft charges", prev_cases: 4 },
+  { cr_id: 5, record_id: 1005, jail_history: "Assault history", prev_cases: 5 }
+]);
+
+// INVESTIGATES
+db.investigates.insertMany([
+  { officer_id: 2, crime_id: 1 },
+  { officer_id: 3, crime_id: 2 },
+  { officer_id: 5, crime_id: 3 },
+  { officer_id: 2, crime_id: 4 },
+  { officer_id: 3, crime_id: 5 }
+]);
+
+// BELONGS_TO
+db.belongs_to.insertMany([
+  { case_id: 1, crime_id: 1 },
+  { case_id: 2, crime_id: 2 },
+  { case_id: 3, crime_id: 3 },
+  { case_id: 4, crime_id: 4 },
+  { case_id: 5, crime_id: 5 }
+]);
+
+// INVOLVES
+db.involves.insertMany([
+  { crime_id: 1, victim_id: 1 },
+  { crime_id: 2, victim_id: 2 },
+  { crime_id: 3, victim_id: 3 },
+  { crime_id: 4, victim_id: 4 },
+  { crime_id: 5, victim_id: 5 }
+]);
+
+// COMMITS
+db.commits.insertMany([
+  { cr_id: 1, crime_id: 1 },
+  { cr_id: 2, crime_id: 2 },
+  { cr_id: 3, crime_id: 3 },
+  { cr_id: 4, crime_id: 4 },
+  { cr_id: 5, crime_id: 5 }
+]);

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACK -- Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --ink: #0a0c0f;
+            --ink-2: #111417;
+            --ink-3: #1a1e24;
+            --line: #242830;
+            --muted: #4a5260;
+            --text-dim: #6b7685;
+            --text: #c8d0dc;
+            --text-bright: #e8edf5;
+            --oracle: #e05a1e;
+            --oracle-dim: rgba(224,90,30,0.12);
+            --oracle-glow: rgba(224,90,30,0.25);
+            --accent: #2a7fff;
+            --mono: 'Space Mono', monospace;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        body {
+            background: var(--ink);
+            font-family: var(--sans);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        /* Glow orb */
+        body::after {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(224,90,30,0.08) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .login-wrap {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 440px;
+            padding: 24px;
+            animation: fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.25em;
+            color: var(--oracle);
+            border: 1px solid var(--oracle);
+            padding: 4px 12px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .brand h1 {
+            font-family: var(--mono);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-bright);
+            letter-spacing: 0.15em;
+            line-height: 1;
+        }
+
+        .brand p {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            font-family: var(--mono);
+        }
+
+        .card {
+            background: var(--ink-2);
+            border: 1px solid var(--line);
+            padding: 36px;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--oracle);
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .field input {
+            width: 100%;
+            background: var(--ink-3);
+            border: 1px solid var(--line);
+            color: var(--text-bright);
+            font-family: var(--mono);
+            font-size: 14px;
+            padding: 12px 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .field input:focus {
+            border-color: var(--oracle);
+            box-shadow: 0 0 0 3px var(--oracle-dim);
+        }
+
+        .field input::placeholder {
+            color: var(--muted);
+        }
+
+        .error-msg {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: #e05a5a;
+            margin-bottom: 16px;
+            min-height: 16px;
+            letter-spacing: 0.05em;
+        }
+
+        .login-btn {
+            width: 100%;
+            background: var(--oracle);
+            color: #fff;
+            border: none;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 14px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover { background: #c44e18; }
+        .login-btn:active { transform: scale(0.99); }
+
+        .login-btn.loading { pointer-events: none; opacity: 0.7; }
+
+        .demo-block {
+            margin-top: 24px;
+            border: 1px solid var(--line);
+            padding: 16px;
+            background: var(--ink-3);
+        }
+
+        .demo-block-title {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.25em;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .demo-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--line);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .demo-row:last-child { border-bottom: none; }
+        .demo-row:hover { background: rgba(224,90,30,0.05); padding-left: 4px; }
+
+        .demo-role {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--oracle);
+            letter-spacing: 0.1em;
+        }
+
+        .demo-cred {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .corner-tag {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--muted);
+            letter-spacing: 0.15em;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrap">
+        <div class="brand">
+            <div class="brand-badge">Law Enforcement</div>
+            <h1>TRACK</h1>
+            <p>Tracking Records And Criminal Knowledge</p>
+        </div>
+
+        <div class="card">
+            <div class="field">
+                <label>Officer ID</label>
+                <input type="number" id="officer-id" placeholder="Enter your officer ID" autocomplete="off">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <div class="error-msg" id="error-msg"></div>
+            <button class="login-btn" id="login-btn">Authenticate</button>
+        </div>
+
+        <div class="demo-block">
+            <div class="demo-block-title">Demo Credentials -- click to fill</div>
+            <div class="demo-row" onclick="fillCreds(1,'admin123')">
+                <span class="demo-role">ADMIN</span>
+                <span class="demo-cred">ID: 1 / admin123</span>
+            </div>
+            <div class="demo-row" onclick="fillCreds(4,'admin123')">
+                <span class="demo-role">ADMIN</span>
+                <span class="demo-cred">ID: 4 / admin123</span>
+            </div>
+            <div class="demo-row" onclick="fillCreds(2,'regular123')">
+                <span class="demo-role">REGULAR</span>
+                <span class="demo-cred">ID: 2 / regular123</span>
+            </div>
+            <div class="demo-row" onclick="fillCreds(3,'regular123')">
+                <span class="demo-role">REGULAR</span>
+                <span class="demo-cred">ID: 3 / regular123</span>
+            </div>
+            <div class="demo-row" onclick="fillCreds(5,'regular123')">
+                <span class="demo-role">REGULAR</span>
+                <span class="demo-cred">ID: 5 / regular123</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="corner-tag">COMSATS -- DBMS PROJECT 2025</div>
+
+    <script>
+        const API = 'http://localhost:3000';
+
+        function fillCreds(id, pass) {
+            document.getElementById('officer-id').value = id;
+            document.getElementById('password').value = pass;
+            document.getElementById('error-msg').textContent = '';
+        }
+
+        document.getElementById('password').addEventListener('keydown', e => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        document.getElementById('login-btn').addEventListener('click', doLogin);
+
+        async function doLogin() {
+            const officerId = document.getElementById('officer-id').value.trim();
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('error-msg');
+            const btn = document.getElementById('login-btn');
+
+            errorEl.textContent = '';
+
+            if (!officerId || !password) {
+                errorEl.textContent = 'All fields are required.';
+                return;
+            }
+
+            btn.textContent = 'Authenticating...';
+            btn.classList.add('loading');
+
+            try {
+                const res = await fetch(`${API}/api/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ officer_id: officerId, password })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    sessionStorage.setItem('track_token', data.token);
+                    sessionStorage.setItem('track_user', JSON.stringify({
+                        officer_id: data.officer_id,
+                        first_name: data.first_name,
+                        last_name: data.last_name,
+                        role: data.role,
+                        rank: data.rank
+                    }));
+                    window.location.href = 'index.html';
+                } else {
+                    errorEl.textContent = data.error || 'Authentication failed.';
+                    btn.textContent = 'Authenticate';
+                    btn.classList.remove('loading');
+                }
+            } catch (e) {
+                errorEl.textContent = 'Cannot reach server. Is it running?';
+                btn.textContent = 'Authenticate';
+                btn.classList.remove('loading');
+            }
+        }
+    </script>
+</body>
+</html>

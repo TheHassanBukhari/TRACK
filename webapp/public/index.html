@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRACK -- Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="db-oracle">
+    <!-- DB transition overlay -->
+    <div id="db-transition" class="db-transition">
+        <div class="db-transition-inner">
+            <div class="db-transition-label" id="db-transition-label">SWITCHING TO MONGODB</div>
+            <div class="db-transition-bar"><div class="db-transition-fill"></div></div>
+        </div>
+    </div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="brand-mark">
+                    <span class="brand-mark-text">TRACK</span>
+                    <span class="brand-mark-sub">v1.0</span>
+                </div>
+
+                <div class="officer-card">
+                    <div class="officer-avatar" id="officer-avatar">--</div>
+                    <div class="officer-info">
+                        <div class="officer-name" id="officer-name">Loading</div>
+                        <div class="officer-meta" id="officer-meta">--</div>
+                    </div>
+                </div>
+
+                <div class="db-switch-block">
+                    <div class="db-switch-label">ACTIVE DATABASE</div>
+                    <button class="db-switch-btn" id="db-switch-btn">
+                        <span class="db-switch-indicator" id="db-indicator"></span>
+                        <span class="db-switch-name" id="db-switch-name">Oracle XE</span>
+                        <span class="db-switch-action">Switch</span>
+                    </button>
+                    <div class="db-switch-hint" id="db-switch-hint">Relational -- SQL</div>
+                </div>
+            </div>
+
+            <nav class="nav">
+                <div class="nav-section-label">Navigation</div>
+                <button class="nav-item active" data-page="dashboard">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1" y="1" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="1" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="8.5" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.5"/><rect x="8.5" y="8.5" width="5.5" height="5.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-page="cases">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2 3h11v10H2V3z" stroke="currentColor" stroke-width="1.5"/><path d="M5 1h5v2H5V1z" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h5M5 10h3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    <span>Cases</span>
+                </button>
+                <button class="nav-item" data-page="criminals">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 14c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <span>Criminals</span>
+                </button>
+                <button class="nav-item" data-page="fir">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 1h9l2 2v11H1V3L3 1z" stroke="currentColor" stroke-width="1.5"/><path d="M4 6h7M4 9h7M4 12h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                    <span>FIR</span>
+                </button>
+                <button class="nav-item" data-page="evidence">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M9.5 9.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <span>Evidence</span>
+                </button>
+                <button class="nav-item" data-page="victims">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1L9.5 5.5H14L10.5 8.5L12 13L7.5 10L3 13L4.5 8.5L1 5.5H5.5L7.5 1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    <span>Victims</span>
+                </button>
+                <div class="nav-section-label admin-only" style="display:none">Admin</div>
+                <button class="nav-item admin-only" data-page="officers" style="display:none">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="4" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M1 14c0-2.761 2.91-5 6.5-5s6.5 2.239 6.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M5 10.5l2.5 2 2.5-2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Officers</span>
+                </button>
+                <button class="nav-item admin-only" data-page="query" style="display:none">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 4l4 4-4 4M8 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Query Editor</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <button class="nav-item logout-btn" id="logout-btn">
+                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M6 2H2v11h4M10 10l3-3-3-3M13 7H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main" id="main-content">
+            <div class="page-loading">Loading...</div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

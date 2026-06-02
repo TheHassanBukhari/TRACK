@@ -1,0 +1,4 @@
+use track
+
+db.cases.updateOne({ case_id: 2 }, { $rename: { "c_c_status": "c_status" } });
+db.cases.updateOne({ case_id: 5 }, { $rename: { "cc_status": "c_status" } });

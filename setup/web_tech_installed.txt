@@ -1,0 +1,161 @@
+Here is the complete list of everything we did for the webapp setup, from start to finish.
+
+---
+
+## Complete Webapp Setup Checklist
+
+### 1. System Prerequisites (Already had)
+
+| Item | Status |
+|------|--------|
+| Oracle XE 21c with TRACK schema | ✅ Already set up |
+| MongoDB in Docker container | ✅ Already set up |
+| Oracle TRACK user with data | ✅ Already set up |
+| MongoDB `track` database with 14 collections | ✅ Already set up |
+
+---
+
+### 2. Installed Software & Dependencies
+
+```bash
+# Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verify
+node --version
+```
+
+```bash
+# Project initialization
+cd ~/Desktop/TRACK
+mkdir webapp
+cd webapp
+npm init -y
+```
+
+```bash
+# NPM packages
+npm install express mongodb oracledb cors
+```
+
+```bash
+# Oracle Instant Client (for oracledb to work)
+cd ~/Downloads
+wget https://download.oracle.com/otn_software/linux/instantclient/218000/instantclient-basic-linux.x64-21.8.0.0.0dbru.zip
+unzip instantclient-basic-linux.x64-21.8.0.0.0dbru.zip
+sudo mkdir -p /opt/oracle
+sudo mv instantclient_21_8 /opt/oracle/
+echo 'export LD_LIBRARY_PATH=/opt/oracle/instantclient_21_8:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+---
+
+### 3. Created Project Structure
+
+```
+~/Desktop/TRACK/webapp/
+├── package.json
+├── node_modules/
+├── server.js
+└── public/
+    ├── index.html
+    ├── login.html
+    ├── style.css
+    ├── dashboard.js
+    └── login.js
+```
+
+---
+
+### 4. Created Files (6 files total)
+
+| File | Path | Purpose |
+|------|------|---------|
+| `server.js` | `~/Desktop/TRACK/webapp/server.js` | Backend with all APIs for Oracle + MongoDB |
+| `login.html` | `~/Desktop/TRACK/webapp/public/login.html` | Login page |
+| `index.html` | `~/Desktop/TRACK/webapp/public/index.html` | Main dashboard (loaded after login) |
+| `style.css` | `~/Desktop/TRACK/webapp/public/style.css` | Complete styling for both pages |
+| `login.js` | `~/Desktop/TRACK/webapp/public/login.js` | Login form logic |
+| `dashboard.js` | `~/Desktop/TRACK/webapp/public/dashboard.js` | Frontend logic for all dashboard features |
+
+---
+
+### 5. Fixed Oracle Connection String
+
+Changed from:
+```
+connectString: 'localhost:1521/XE'
+```
+
+To:
+```
+connectString: 'localhost:1521/XEPDB1'
+```
+
+---
+
+### 6. Running the Application
+
+```bash
+cd ~/Desktop/TRACK/webapp
+node server.js
+```
+
+---
+
+### 7. Access the Application
+
+Open browser to: `http://localhost:3000/login.html`
+
+---
+
+### 8. Demo Credentials
+
+| Role | Officer ID | Password |
+|------|------------|----------|
+| Admin | 1 | admin123 |
+| Regular | 2 | regular123 |
+| Regular | 3 | regular123 |
+| Regular | 5 | regular123 |
+
+---
+
+### 9. Features Implemented
+
+| Feature | Status |
+|---------|--------|
+| Login with role-based access | ✅ |
+| Dashboard with statistics | ✅ |
+| Cases management (view, create, update, delete) | ✅ |
+| Criminals management (view, create, update, delete for admin) | ✅ |
+| FIR management (view, create) | ✅ |
+| Evidence management (view, add) | ✅ |
+| Victims management (view) | ✅ |
+| Officers management (admin only) | ✅ |
+| Custom query editor (admin only) | ✅ |
+| Toggle between Oracle and MongoDB | ✅ |
+| Regular officers see only their assigned cases | ✅ |
+
+---
+
+### 10. Files Saved in Your Project (Reference)
+
+```
+~/Desktop/TRACK/
+├── webapp/                    # Web application
+├── sql/
+│   ├── tables.txt            # Oracle schema
+│   ├── data.txt              # Oracle sample data
+│   └── create.txt            # Oracle user creation
+├── mongo/
+│   ├── mongo_create_tables.txt   # MongoDB collections
+│   ├── mongo_verify.txt          # MongoDB verification
+│   └── mongo_fix_cases.txt       # MongoDB fixes
+└── Documentation.pdf
+```
+
+---
+
+This is everything we did. The webapp is now fully functional with both Oracle and MongoDB, role-based access, and all required features.
