@@ -132,6 +132,10 @@ POST /api/:db/cases/create
 **Institution:** COMSATS University Islamabad  
 **Project Type:** Semester Project
 
+## Project Team
+
+Developed by [Hassan Bukhari](https://github.com/TheHassanBukhari) and [Munnazah Noor](https://github.com/munnazahnoor-10102005).
+
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
