@@ -1,7 +1,8 @@
 # TRACK
 Tracking Records And Criminal Knowledge (TRACK) is a database driven crime management system for managing criminal records, FIRs, investigations, evidence, victims, and officers. The project supports both Oracle XE (SQL) and MongoDB (NoSQL) through a unified web interface.
 
-**Portfolio:** [hassanbukhari.is-a.dev](https://hassanbukhari.is-a.dev/)
+**Portfolio:** [hassanbukhari.is-a.dev](https://hassanbukhari.is-a.dev/) <br>
+**LinkedIn:** [Syed Hassan Ali Bukhari](https://www.linkedin.com/in/syedhassanalibukhari/)
 
 ## Features
 - Role based access control
@@ -101,5 +102,6 @@ POST /api/:db/cases/create
 **Project Type:** Semester Project
 ## Project Team
 Developed by [Syed Hassan Ali Bukhari](https://hassanbukhari.is-a.dev/) ([GitHub](https://github.com/TheHassanBukhari)) and [Munnazah Noor](https://github.com/munnazahnoor-10102005).
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+
+This project is licensed under the [MIT License](./LICENSE).
+
